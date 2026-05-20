@@ -16,6 +16,13 @@ items: [
 },
 {
 type: 'category',
+label: 'Demos',
+items: [
+'demos/author-corpus-demo',
+],
+},
+{
+type: 'category',
 label: 'Modules',
 items: [
 'modules/paper-kb',
