@@ -1,41 +1,32 @@
-# Website
+# Knowledge Ecosystem Reference Architecture
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repository is the **ecosystem-level architecture authority** for the knowledge-management estate.
 
-## Installation
+It answers a different question from the implementation repositories: not *how does one tool work?*, but *what systems exist, what does each one own, what moves between them, and where should the next capability belong?*
 
-```bash
-yarn
-```
+## Authority boundary
 
-## Local Development
+This repository owns the current reference architecture, repository/authority registry, producer-consumer map, lifecycle documentation, migration context, and integration roadmap.
 
-```bash
-yarn start
-```
+It does **not** own shared machine-readable interoperability contracts. That authority remains in [`kb-contracts`](https://github.com/matuteiglesias/kb-contracts). Producer-owned schemas and runtime behavior remain with their producers.
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+The original paper/KB/review documentation is retained as useful historical and integration evidence. The current architecture pages take precedence when the old blueprint and the present estate differ.
 
-## Build
+## Start here
 
-```bash
-yarn build
-```
+- `docs/intro.md` — orientation and precedence
+- `docs/architecture/current-reference-architecture.md` — current system map
+- `docs/architecture/ecosystem-registry.md` — current and observed systems
+- `docs/architecture/authority-model.md` — ownership and precedence rules
+- `docs/architecture/knowledge-lifecycle.md` — end-to-end knowledge flow
+- `docs/roadmap/reference-architecture-build-bundle.md` — governed build-up waves
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-Using SSH:
+## Local verification
 
 ```bash
-USE_SSH=true yarn deploy
+npm ci
+npm run typecheck
+npm run build
 ```
 
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+The site is configured for `https://knowledge-ecosystem-docs.vercel.app` and is intended to remain a lightweight documentation/control surface rather than an execution platform.

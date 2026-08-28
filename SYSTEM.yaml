@@ -1,0 +1,49 @@
+# Repository boundary and authority declaration.
+schema_version: 1
+id: knowledge.ecosystem.docs
+repository:
+  id: repo.knowledge-ecosystem-docs
+  github: matuteiglesias/knowledge-ecosystem-docs
+domain: knowledge
+system: knowledge-ecosystem
+role: reference-architecture-authority
+lifecycle: active
+authority:
+  status: canonical-for-ecosystem-architecture
+  owns:
+    - current knowledge-ecosystem reference architecture
+    - ecosystem-level authority and responsibility map
+    - repository registry and maturity classification
+    - documented producer-consumer relationships
+    - ecosystem migration and integration roadmap
+    - declared downstream frontier from knowledge to synthesis and publication
+  does_not_own:
+    - shared machine-readable knowledge contracts
+    - producer-owned domain schemas
+    - producer runtime implementation
+    - universal orchestration or execution semantics
+    - source-paper parsing semantics
+    - synthesis or publication implementations that do not yet exist
+interfaces:
+  consumes:
+    - repository-local SYSTEM.yaml and front-door documentation
+    - kb-contracts released interoperability contracts
+    - verified producer and consumer surfaces
+  produces:
+    - current reference architecture
+    - ecosystem registry
+    - authority model
+    - lifecycle and flow documentation
+    - governed integration waves
+upstream:
+  - repo.kb-contracts
+  - active knowledge producers and consumers
+downstream:
+  - humans and agents orienting in the knowledge estate
+  - future synthesis systems
+  - future publication systems
+verification:
+  status: executable-docs
+  command: npm ci && npm run typecheck && npm run build
+maintenance:
+  principle: update architecture when verified system truth changes; never infer authority from repo names alone
