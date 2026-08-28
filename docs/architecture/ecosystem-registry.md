@@ -6,36 +6,74 @@ sidebar_position: 3
 
 # Ecosystem Registry
 
-This is the bootstrap registry for the current knowledge estate. It is intentionally conservative: **confirmed rows are supported by inspected front-door evidence; observed rows are inventory signals awaiting a repository-boundary pass.**
+This is the current registry for the knowledge-management estate. Canonical rows are supported by repository-owned evidence rather than repository names. The bounded W1 reconstruction and its evidence ledger are recorded in [W1 Estate Reconstruction](./w1-estate-reconstruction.md).
 
-## Confirmed authorities and producers
+## Ecosystem authorities
 
-| Repository | Current responsibility | State | Evidence / next proof |
+| Repository | Current responsibility | Lifecycle / authority state | Concrete evidence |
 | --- | --- | --- | --- |
-| `knowledge-ecosystem-docs` | ecosystem reference architecture and integration roadmap | declared canonical | `SYSTEM.yaml` + this documentation build |
-| `kb-contracts` | shared knowledge artifact identity, provenance, compatibility and interoperability | proven front-door boundary | released contract docs/fixtures; producer-owned schema gap remains explicit |
-| `kb-artifacts` | deterministic inspection, filtering, selection and reproducible export of JSONL evidence collections | proven front-door boundary | CLI/API + provenance manifest documented |
-| `knowledge-inspect` | bounded knowledge inspection/selection producer and run evidence | declared/proposed | repository `SYSTEM.yaml`; canonical runtime paths still need reconciliation |
-| `paper-kb` | paper-corpus processing/operator capability | historical + active producer candidate | existing commands and corpus pipeline; boundary requires current reconciliation |
-| `abstract-scroller` | review snapshot surface | historical/current candidate | old integration docs; re-verify current repository boundary before promotion |
+| `knowledge-ecosystem-docs` | ecosystem reference architecture, responsibility registry and integration roadmap | active · ecosystem architecture authority | repository `SYSTEM.yaml`; this docs build and W0/W1 bundle |
+| `kb-contracts` | shared knowledge artifact identity, provenance/integrity, compatibility and interoperability contracts | active · shared interoperability authority | `README.md` blob `d7c5de0`; `SYSTEM.yaml` blob `9c4cb16`; `kb-interop.v1-rc1`; offline `npm run contract:validate` |
 
-## Observed estate requiring reconciliation
+## Active producers and bounded consumers
 
-The GitHub estate also contains knowledge-adjacent systems whose exact current boundaries should be reconstructed rather than inferred:
+| Repository | Evidence-backed boundary | Lifecycle / state | Concrete evidence | Reconciliation status |
+| --- | --- | --- | --- | --- |
+| `kb-artifacts` | deterministic inspection/filtering/selection and reproducible evidence export; producer-owned selection/promotion mechanics | active · producer | README `d2d8070`; AGENTS `5acd983`; `make test`, `make smoke`, `make contract-release-verify` | W2 needed: stale repository ID and command metadata |
+| `knowledge-inspect` | bounded inspection, summary/run-manifest and analysis-output production without hidden source mutation | active · producer | SYSTEM `3a3c98d`; AGENTS `1ace2d2`; Makefile `f644529`; `make health`, `make smoke`, `make verify-run-evidence-demo` | W2 needed: no README and metadata-only command declaration |
+| `paper-kb` | paper ingestion/parsing, paper corpus/chunks, review exports and corpus/API operator surface | active · paper-corpus producer | SYSTEM `486c2c0`; README `8cbe365`; current `corpus-*`, `export-review`, `api-corpus` Make targets | W2 needed: stale repository ID and empty canonical commands |
+| `context-routing` | safe published discovery projection and logical resource catalog over selected governed context sources | active · routing projection | SYSTEM `884b7ba`; README `0aa2be2`; fixture/internal-registry generator + Docusaurus build | W2 needed: alias IDs and empty canonical commands |
+| `matias-context-mcp` | bounded read-only MCP resource gateway over explicit logical resources; source repositories remain authoritative | active · gateway | SYSTEM `e28f866`; README `7534ded`; AGENTS `8f0781c`; `python3 -m matias_context_mcp`, `mctx` | W2 needed: stale source-path alias, empty canonical commands, status prose reconciliation |
+| `abstract-scroller` | immutable snapshot/review capability including prepared CSV / `review_node` ingest | active capability · non-canonical boundary pending | README `d0c2211`; 2026-05-20 merge `77bc68b`; `make snapshot`, `make serve` | W2 decision needed: active downstream product vs producer-local utility; no `SYSTEM.yaml` |
 
-- `knowledge-flow`
-- `knowledge-inspect`
+## Superseded / historical systems
+
+| Repository | Historical role | State | Evidence |
+| --- | --- | --- | --- |
+| `knowledge-flow` | owner-held RAGFlow copy/experiment | superseded; not current knowledge-stack authority | `LIFECYCLE.md` blob `a6ed2ef`; upstream-style README `15293cb`; supersession merge `a8e318c` |
+| legacy three-module pages in this site | paper-centric `paper-kb → KB → abstract-scroller` reference model | historical architecture evidence | [Ecosystem Blueprint](./ecosystem-blueprint.md) and [Module Boundaries](./module-boundaries.md) |
+
+## Conservative current path
+
+```text
+producer-owned sources / corpora
+        │
+        ├── paper-kb
+        │
+        ▼
+    kb-contracts
+(shared interoperability)
+        │
+   ┌────┴───────────────┐
+   ▼                    ▼
+knowledge-inspect   kb-artifacts
+   │                    │
+   └────────┬───────────┘
+            ▼
+      context-routing
+            │
+            ▼
+    matias-context-mcp
+            │
+            ▼
+       humans / agents
+```
+
+This is an evidence-backed **responsibility path**, not a claim that every arrow has already passed an end-to-end interface proof. W3 owns that stronger claim.
+
+`abstract-scroller` remains adjacent until W2 establishes its current architectural status. `knowledge-flow` is explicitly outside the current path.
+
+## Observed estate not yet promoted
+
+The broader GitHub estate still contains knowledge-adjacent systems whose exact current boundaries have not been reconstructed in W1:
+
 - `journal`
-- `paper-kb`
-- `matias-context-mcp`
-- `context-routing`
+- `gpt-digests`
 - `llm-flow-engine`
-- `kb-artifacts`
-- `kb-contracts`
-- `abstract-scroller`
 - `awesome-automation-for-knowledge-work`
+- domain-specific knowledge bases such as `lcd-UBA-knowledgebase`
 
-Their presence is evidence of capability, not enough evidence for a canonical ownership claim. Wave 1 of the build bundle converts this inventory into a verified registry.
+Historical aliases to `repo.context`, `repo.gpt-digests`, or `repo.knowledge-base-app` may appear inside active repository metadata. W1 treats those aliases as **reconciliation evidence**, not proof that the aliased repositories remain current authorities.
 
 ## Deliberately unassigned frontier
 
@@ -49,11 +87,13 @@ Their presence is evidence of capability, not enough evidence for a canonical ow
 
 ## Registry maintenance rule
 
-Promote an observed system only after a boundary pass answers:
+Promote or materially change a registry row only after a boundary pass answers:
 
 1. What does it own?
 2. What does it explicitly not own?
 3. What does it consume and produce?
 4. Which interfaces are public?
 5. Which contracts are shared versus producer-owned?
-6. What command or fixture proves the claimed boundary?
+6. What command, fixture or recent evidence supports the claimed boundary?
+
+When repository prose disagrees, record the disagreement and route it to W2 rather than silently choosing a winner.
