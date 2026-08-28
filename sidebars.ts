@@ -1,73 +1,88 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
-docs: [
-'intro',
-'quickstart',
-{
-type: 'category',
-label: 'Architecture',
-items: [
-'architecture/ecosystem-blueprint',
-'architecture/module-boundaries',
-'architecture/public-vs-private-surfaces',
-'architecture/battle-tests',
-],
-},
-{
-type: 'category',
-label: 'Demos',
-items: [
-'demos/author-corpus-demo',
-],
-},
-{
-type: 'category',
-label: 'Modules',
-items: [
-'modules/paper-kb',
-'modules/paper-kb-frontend',
-'modules/kb',
-'modules/abstract-scroller',
-],
-},
-{
-type: 'category',
-label: 'Integrations',
-items: [
-'integrations/paper-kb-to-kb',
-'integrations/paper-kb-to-abstract-scroller',
-'integrations/backend-to-frontend',
-],
-},
-{
-type: 'category',
-label: 'Contracts',
-items: [
-'contracts/chunk-set-v1',
-'contracts/review-csv-v1',
-'contracts/review-node-v1',
-'contracts/snapshot-contract',
-],
-},
-{
-type: 'category',
-label: 'Operations',
-items: [
-'operations/commands',
-'operations/troubleshooting',
-'operations/stale-and-legacy-surfaces',
-],
-},
-{
-type: 'category',
-label: 'Roadmap',
-items: [
-'roadmap/next-prs',
-'roadmap/end-state',
-],
-},
-],
+  docs: [
+    'intro',
+    {
+      type: 'category',
+      label: 'Current Architecture',
+      items: [
+        'architecture/current-reference-architecture',
+        'architecture/authority-model',
+        'architecture/ecosystem-registry',
+        'architecture/knowledge-lifecycle',
+        'architecture/public-vs-private-surfaces',
+        'architecture/battle-tests',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Build-up Roadmap',
+      items: [
+        'roadmap/reference-architecture-build-bundle',
+        'roadmap/next-prs',
+        'roadmap/end-state',
+      ],
+    },
+    'quickstart',
+    {
+      type: 'category',
+      label: 'Historical Blueprint',
+      collapsed: true,
+      items: [
+        'architecture/ecosystem-blueprint',
+        'architecture/module-boundaries',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Demos',
+      collapsed: true,
+      items: ['demos/author-corpus-demo'],
+    },
+    {
+      type: 'category',
+      label: 'Legacy / Producer Modules',
+      collapsed: true,
+      items: [
+        'modules/paper-kb',
+        'modules/paper-kb-frontend',
+        'modules/kb',
+        'modules/abstract-scroller',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Historical Integrations',
+      collapsed: true,
+      items: [
+        'integrations/paper-kb-to-kb',
+        'integrations/paper-kb-to-abstract-scroller',
+        'integrations/backend-to-frontend',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Historical Contracts',
+      collapsed: true,
+      items: [
+        'contracts/chunk-set-v1',
+        'contracts/review-csv-v1',
+        'contracts/review-node-v1',
+        'contracts/snapshot-contract',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Operations',
+      collapsed: true,
+      items: [
+        'operations/commands',
+        'operations/troubleshooting',
+        'operations/stale-and-legacy-surfaces',
+      ],
+    },
+  ],
 };
 
 export default sidebars;
