@@ -38,7 +38,7 @@ Required:
 
 **DoD:** a new human or agent can identify where ecosystem truth, contract truth and producer truth live without opening every repo.
 
-**Status:** implemented by the reference-architecture reseed branch; pending human acceptance/merge.
+**Status:** implemented on `docs/reference-architecture-reseed`; CI/build green; pending human acceptance/merge.
 
 ## Wave 1 — Estate reconstruction
 
@@ -56,6 +56,21 @@ Prefer a bounded first tranche of the repositories most central to actual curren
 
 **DoD:** every canonical registry row has a concrete evidence pointer and no responsibility is assigned solely from a repo name.
 
+**Status:** complete for the bounded central tranche on 2026-08-28. See [W1 Estate Reconstruction](../architecture/w1-estate-reconstruction.md).
+
+W1 evidence-backed rows now cover:
+
+- `kb-contracts`;
+- `kb-artifacts`;
+- `knowledge-inspect`;
+- `paper-kb`;
+- `context-routing`;
+- `matias-context-mcp`;
+- `knowledge-flow` as explicitly superseded;
+- `abstract-scroller` as an active capability with non-canonical boundary pending reconciliation.
+
+W1 intentionally leaves `journal`, `gpt-digests`, `llm-flow-engine`, `awesome-automation-for-knowledge-work` and domain-specific knowledge bases observed until a current consumer path or authority conflict makes them relevant.
+
 ## Wave 2 — Repository reconciliation
 
 **Goal:** make active repositories tell the same architectural story.
@@ -70,6 +85,18 @@ Apply only the smallest justified updates:
 - explicit pointer to `kb-contracts` when a shared contract is consumed.
 
 Do not redesign runtime behavior merely to match documentation.
+
+### W2 frontier created by W1
+
+Prioritize metadata/front-door discrepancies with concrete evidence:
+
+1. `kb-artifacts`: fix stale `repository.id: repo.gpt-digests`; reconcile `kbctl` metadata with current `kb-artifact`/Make surfaces.
+2. `paper-kb`: fix stale `repository.id: repo.knowledge-base-app`; record current operator Make targets.
+3. `knowledge-inspect`: add/repair front-door boundary and record the bounded health/smoke/verification commands already governed in `AGENTS.md`/Makefile.
+4. `context-routing`: reconcile historical alias IDs and record the fixture/internal-registry generator + Docusaurus verification surface.
+5. `matias-context-mcp`: reconcile source aliases, current commands and the mismatch between README `v0.1 CLOSED` and older AGENTS P0 prose without changing runtime behavior.
+6. `abstract-scroller`: decide and declare its present lifecycle/role before promoting it into the canonical path.
+7. `knowledge-flow`: do not revive; only finish archive-prerequisite inspection if a concrete need arises.
 
 **DoD:** high-value active producers and consumers agree with the reference architecture, or their disagreement is explicitly recorded as a blocker.
 
