@@ -58,18 +58,9 @@ Prefer a bounded first tranche of the repositories most central to actual curren
 
 **Status:** complete for the bounded central tranche on 2026-08-28. See [W1 Estate Reconstruction](../architecture/w1-estate-reconstruction.md).
 
-W1 evidence-backed rows now cover:
+W1 evidence-backed rows cover `kb-contracts`, `kb-artifacts`, `knowledge-inspect`, `paper-kb`, `context-routing`, `matias-context-mcp`, `knowledge-flow` as explicitly superseded, and `abstract-scroller` as a real review/snapshot capability.
 
-- `kb-contracts`;
-- `kb-artifacts`;
-- `knowledge-inspect`;
-- `paper-kb`;
-- `context-routing`;
-- `matias-context-mcp`;
-- `knowledge-flow` as explicitly superseded;
-- `abstract-scroller` as an active capability with non-canonical boundary pending reconciliation.
-
-W1 intentionally leaves `journal`, `gpt-digests`, `llm-flow-engine`, `awesome-automation-for-knowledge-work` and domain-specific knowledge bases observed until a current consumer path or authority conflict makes them relevant.
+W1 intentionally leaves `journal`, historical `gpt-digests`, `llm-flow-engine`, `awesome-automation-for-knowledge-work` and domain-specific knowledge bases observed until a current consumer path or authority conflict makes them relevant.
 
 ## Wave 2 — Repository reconciliation
 
@@ -86,19 +77,22 @@ Apply only the smallest justified updates:
 
 Do not redesign runtime behavior merely to match documentation.
 
-### W2 frontier created by W1
-
-Prioritize metadata/front-door discrepancies with concrete evidence:
-
-1. `kb-artifacts`: fix stale `repository.id: repo.gpt-digests`; reconcile `kbctl` metadata with current `kb-artifact`/Make surfaces.
-2. `paper-kb`: fix stale `repository.id: repo.knowledge-base-app`; record current operator Make targets.
-3. `knowledge-inspect`: add/repair front-door boundary and record the bounded health/smoke/verification commands already governed in `AGENTS.md`/Makefile.
-4. `context-routing`: reconcile historical alias IDs and record the fixture/internal-registry generator + Docusaurus verification surface.
-5. `matias-context-mcp`: reconcile source aliases, current commands and the mismatch between README `v0.1 CLOSED` and older AGENTS P0 prose without changing runtime behavior.
-6. `abstract-scroller`: decide and declare its present lifecycle/role before promoting it into the canonical path.
-7. `knowledge-flow`: do not revive; only finish archive-prerequisite inspection if a concrete need arises.
-
 **DoD:** high-value active producers and consumers agree with the reference architecture, or their disagreement is explicitly recorded as a blocker.
+
+**Status:** W2 frontier addressed on 2026-08-28 as six bounded draft PRs; pending repository-level acceptance/merge. See [W2 Repository Reconciliation](../architecture/w2-repository-reconciliation.md).
+
+| Repository | W2 proposal |
+| --- | --- |
+| `kb-artifacts` | [PR #10](https://github.com/matuteiglesias/kb-artifacts/pull/10) |
+| `paper-kb` | [PR #12](https://github.com/matuteiglesias/paper-kb/pull/12) |
+| `knowledge-inspect` | [PR #19](https://github.com/matuteiglesias/knowledge-inspect/pull/19) |
+| `context-routing` | [PR #4](https://github.com/matuteiglesias/context-routing/pull/4) |
+| `matias-context-mcp` | [PR #6](https://github.com/matuteiglesias/matias-context-mcp/pull/6) |
+| `abstract-scroller` | [PR #2](https://github.com/matuteiglesias/abstract-scroller/pull/2) |
+
+The changes normalize current repository identities, expose already-documented canonical command surfaces, repair visible checkout/link aliases where necessary, and give `abstract-scroller` a conservative system boundary. All producer verification statuses remain conservative because W2 did not execute runtime checks.
+
+`knowledge-flow` remains superseded and was deliberately not touched.
 
 ## Wave 3 — Interface proof
 
@@ -117,6 +111,18 @@ consumer
 Add fixtures/smokes at the narrowest authority that owns them. Shared interoperability additions go to `kb-contracts`; producer-domain schemas remain local.
 
 **DoD:** priority ecosystem edges are marked `proven` rather than merely `declared`.
+
+### W3 frontier created by W2
+
+Prefer one or two vertical slices before broadening:
+
+1. **`context-routing → matias-context-mcp`** — strongest low-risk candidate. Pin one generated catalog/source descriptor from the routing projection and prove it is consumed through the MCP gateway with stable logical identity, provenance and no physical-path leakage.
+2. **`paper-kb → knowledge-inspect`** — pin one exact paper/review artifact and prove consumer validation without importing producer internals.
+3. **`knowledge-inspect → kb-artifacts`** — identify the exact run/summary/evidence handoff actually selected downstream; do not infer compatibility from similarly named contracts.
+4. **`kb-artifacts + knowledge-inspect → context-routing`** — prove which governed outputs become routable public/catalog entries and which remain intentionally private.
+5. **`paper-kb → abstract-scroller`** — use the existing `review_node` path to prove a current producer artifact reaches a valid immutable snapshot; decide whether the snapshot schema remains producer-local.
+
+Residual runtime-status ambiguity in `matias-context-mcp` can be resolved while proving edge 1, rather than becoming a separate platform-hardening project.
 
 ## Wave 4 — Operability and sensing
 
