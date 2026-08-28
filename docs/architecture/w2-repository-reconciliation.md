@@ -27,6 +27,17 @@ It does **not** change runtime behavior, shared contract semantics, selection po
 
 `knowledge-flow` was deliberately not modified. Its own lifecycle declaration already marks it superseded; W2 has no reason to revive or normalize a vendor-copy repository.
 
+## Validation observed at W2 closure
+
+Validation is reported conservatively and per repository:
+
+- `kb-artifacts` PR head: GitHub **CI**, **Documentation**, and **Pages deploy** workflows passed.
+- `abstract-scroller` PR head: GitHub **CI** passed.
+- `knowledge-ecosystem-docs` integration head: `docs-ci` passed, including install, TypeScript checking and Docusaurus build.
+- `paper-kb`, `knowledge-inspect`, `context-routing`, and `matias-context-mcp` exposed no pull-request workflow run for these W2 heads through the connected GitHub surface. Their proposals therefore remain metadata-reviewed, **not runtime-verified**.
+
+No producer `verification.status` was promoted merely because a PR was opened or documentation compiled.
+
 ## Identity map after W2
 
 The proposed current repository identities are:
@@ -119,12 +130,12 @@ Repository-level W2 becomes accepted when the six draft PRs are reviewed/merged 
 
 ## W3 frontier
 
-The first interface-proof candidates are now much clearer:
+Prefer one or two high-value edges before broadening:
 
-1. `paper-kb → knowledge-inspect`: pin one exact paper/review artifact and prove consumer validation.
-2. `knowledge-inspect → kb-artifacts`: pin the exact run/summary/evidence handoff actually consumed by selection.
-3. `kb-artifacts + knowledge-inspect → context-routing`: prove which governed outputs become routable catalog entries and which remain private.
-4. `context-routing → matias-context-mcp`: prove a generated catalog/source descriptor can be consumed through the MCP gateway without path or authority drift.
+1. `context-routing → matias-context-mcp`: pin one generated catalog/source descriptor and prove the gateway consumes it with stable logical identity, provenance and no physical-path leakage. This can also settle the gateway's residual runtime-status ambiguity.
+2. `paper-kb → knowledge-inspect`: pin one exact paper/review artifact and prove consumer validation without importing producer internals.
+3. `knowledge-inspect → kb-artifacts`: pin the exact run/summary/evidence handoff actually consumed by selection.
+4. `kb-artifacts + knowledge-inspect → context-routing`: prove which governed outputs become routable catalog entries and which remain private.
 5. `paper-kb → abstract-scroller`: prove one current `review_node` fixture/export reaches a valid immutable snapshot without copying shared contract authority locally.
 
-Prefer proving one or two high-value edges end-to-end before broadening W3.
+Diagram arrows should only become `proven` after executable evidence exists.
