@@ -21,6 +21,7 @@ The bundle follows the same principle that works in scientific-system recovery: 
 - legacy systems remain inspectable; authority can move without deleting history.
 - no broad repo consolidation merely to simplify the diagram.
 - no synthesis/publication implementation is created by this bundle.
+- a diagram arrow is not an executable interface until W3-style proof exists.
 
 ## Wave 0 — Reference authority reseed
 
@@ -38,7 +39,7 @@ Required:
 
 **DoD:** a new human or agent can identify where ecosystem truth, contract truth and producer truth live without opening every repo.
 
-**Status:** implemented on `docs/reference-architecture-reseed`; CI/build green; pending human acceptance/merge.
+**Status:** complete and merged on 2026-08-28 through knowledge-ecosystem-docs PR #1.
 
 ## Wave 1 — Estate reconstruction
 
@@ -52,15 +53,9 @@ For each knowledge-adjacent repository:
 4. identify duplicate or stale authority claims;
 5. update the registry without changing implementation.
 
-Prefer a bounded first tranche of the repositories most central to actual current flows.
-
 **DoD:** every canonical registry row has a concrete evidence pointer and no responsibility is assigned solely from a repo name.
 
-**Status:** complete for the bounded central tranche on 2026-08-28. See [W1 Estate Reconstruction](../architecture/w1-estate-reconstruction.md).
-
-W1 evidence-backed rows cover `kb-contracts`, `kb-artifacts`, `knowledge-inspect`, `paper-kb`, `context-routing`, `matias-context-mcp`, `knowledge-flow` as explicitly superseded, and `abstract-scroller` as a real review/snapshot capability.
-
-W1 intentionally leaves `journal`, historical `gpt-digests`, `llm-flow-engine`, `awesome-automation-for-knowledge-work` and domain-specific knowledge bases observed until a current consumer path or authority conflict makes them relevant.
+**Status:** complete for the bounded central tranche. See [W1 Estate Reconstruction](../architecture/w1-estate-reconstruction.md).
 
 ## Wave 2 — Repository reconciliation
 
@@ -79,20 +74,18 @@ Do not redesign runtime behavior merely to match documentation.
 
 **DoD:** high-value active producers and consumers agree with the reference architecture, or their disagreement is explicitly recorded as a blocker.
 
-**Status:** W2 frontier addressed on 2026-08-28 as six bounded draft PRs; pending repository-level acceptance/merge. See [W2 Repository Reconciliation](../architecture/w2-repository-reconciliation.md).
+**Status:** central W2 tranche merged on 2026-08-28:
 
-| Repository | W2 proposal |
+| Repository | Accepted W2 change |
 | --- | --- |
-| `kb-artifacts` | [PR #10](https://github.com/matuteiglesias/kb-artifacts/pull/10) |
-| `paper-kb` | [PR #12](https://github.com/matuteiglesias/paper-kb/pull/12) |
-| `knowledge-inspect` | [PR #19](https://github.com/matuteiglesias/knowledge-inspect/pull/19) |
-| `context-routing` | [PR #4](https://github.com/matuteiglesias/context-routing/pull/4) |
-| `matias-context-mcp` | [PR #6](https://github.com/matuteiglesias/matias-context-mcp/pull/6) |
-| `abstract-scroller` | [PR #2](https://github.com/matuteiglesias/abstract-scroller/pull/2) |
+| `kb-artifacts` | PR #10 |
+| `paper-kb` | PR #12 |
+| `knowledge-inspect` | PR #19 |
+| `context-routing` | PR #4 |
+| `matias-context-mcp` | PR #6 |
+| `abstract-scroller` | PR #2 |
 
-The changes normalize current repository identities, expose already-documented canonical command surfaces, repair visible checkout/link aliases where necessary, and give `abstract-scroller` a conservative system boundary. All producer verification statuses remain conservative because W2 did not execute runtime checks.
-
-`knowledge-flow` remains superseded and was deliberately not touched.
+See [W2 Repository Reconciliation](../architecture/w2-repository-reconciliation.md). W3 may still correct W2 relationships when executable evidence disproves a declared edge; that is expected governance, not a failure of W2.
 
 ## Wave 3 — Interface proof
 
@@ -110,19 +103,35 @@ consumer
 
 Add fixtures/smokes at the narrowest authority that owns them. Shared interoperability additions go to `kb-contracts`; producer-domain schemas remain local.
 
-**DoD:** priority ecosystem edges are marked `proven` rather than merely `declared`.
+**DoD:** priority ecosystem edges are marked `proven` rather than merely `declared`, or an attempted proof produces an explicit corrected/non-edge result.
 
-### W3 frontier created by W2
+### Tranche 1 — 2026-08-28
 
-Prefer one or two vertical slices before broadening:
+See [W3 Interface Proofs](../architecture/w3-interface-proofs.md).
 
-1. **`context-routing → matias-context-mcp`** — strongest low-risk candidate. Pin one generated catalog/source descriptor from the routing projection and prove it is consumed through the MCP gateway with stable logical identity, provenance and no physical-path leakage.
-2. **`paper-kb → knowledge-inspect`** — pin one exact paper/review artifact and prove consumer validation without importing producer internals.
-3. **`knowledge-inspect → kb-artifacts`** — identify the exact run/summary/evidence handoff actually selected downstream; do not infer compatibility from similarly named contracts.
-4. **`kb-artifacts + knowledge-inspect → context-routing`** — prove which governed outputs become routable public/catalog entries and which remain intentionally private.
-5. **`paper-kb → abstract-scroller`** — use the existing `review_node` path to prove a current producer artifact reaches a valid immutable snapshot; decide whether the snapshot schema remains producer-local.
+| Edge | Result |
+| --- | --- |
+| `paper-kb → knowledge-inspect` | **PROVEN** — real producer `chunk_set` accepted by real consumer validator; producer regression green |
+| `context-routing → matias-context-mcp` | **PROVEN WITH BOUNDED FIX** — real generated public catalog crosses MCP with integrity/privacy checks; both suites green after current-schema codec repair |
+| `knowledge-inspect → kb-artifacts` | **NOT PROVEN / CORRECTED** — no direct current handoff found; W3 removes the overstated metadata rather than creating a speculative adapter |
 
-Residual runtime-status ambiguity in `matias-context-mcp` can be resolved while proving edge 1, rather than becoming a separate platform-hardening project.
+W3 implementation/review surfaces:
+
+- paper-kb PR #13 — chunk-set cross-repo proof;
+- Context Routing PR #5 — producer-side cross-repo routing→MCP proof;
+- Matías Context MCP PR #8 — current public catalog compatibility repair + reusable tests;
+- KB Artifacts PR #11 — correct direct Knowledge Inspect input claim;
+- Knowledge Inspect PR #20 — correct direct KB Artifacts downstream claim.
+
+### Remaining W3 frontier
+
+Prefer the next proof only when it resolves a real architectural question:
+
+1. **governed outputs → `context-routing`** — determine whether routing actually consumes producer artifacts or only publishes source descriptors/pointers.
+2. **`paper-kb → abstract-scroller`** — first prove that a current producer `review_node` export exists; do not infer it from old contract prose.
+3. **direct MCP manifest reads** from Knowledge Inspect and KB Artifacts — likely narrower real interfaces than a generalized routing ingestion claim.
+
+A failed proof should narrow the architecture. Do not add adapters merely to increase the number of green arrows.
 
 ## Wave 4 — Operability and sensing
 
@@ -136,7 +145,7 @@ Candidates:
 - repository-boundary drift checks;
 - scheduled docs/registry reconciliation report.
 
-Checks should report actionable drift and avoid consequential automatic promotion.
+The successful W3 cross-repo checks are candidates for later cheap scheduled sensing only after their PRs are accepted. W4 should reuse proof machinery rather than invent a universal orchestrator.
 
 **DoD:** important deterioration can become visible without manually opening every repository.
 
@@ -157,4 +166,4 @@ This wave belongs in a separate thin contract/domain boundary unless evidence sh
 
 ## Stop rule
 
-The bundle succeeds when the estate is **legible and composable**. It fails if it becomes an excuse to refactor every knowledge repository, build a universal UI, or automate editorial judgment before a repeated consumer need exists.
+The bundle succeeds when the estate is **legible and composable**. It fails if it becomes an excuse to refactor every knowledge repository, build a universal UI, automate editorial judgment before a repeated consumer need exists, or create integration code solely to make a diagram arrow true.
