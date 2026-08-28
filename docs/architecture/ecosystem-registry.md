@@ -6,70 +6,94 @@ sidebar_position: 3
 
 # Ecosystem Registry
 
-This is the current registry for the knowledge-management estate. Canonical rows are supported by repository-owned evidence rather than repository names. The bounded W1 reconstruction is recorded in [W1 Estate Reconstruction](./w1-estate-reconstruction.md); the repository-owned reconciliation proposals are recorded in [W2 Repository Reconciliation](./w2-repository-reconciliation.md).
+This is the current registry for the knowledge-management estate. Canonical rows are supported by repository-owned evidence rather than repository names. W1 reconstructed boundaries, W2 reconciled repository declarations, and [W3 Interface Proofs](./w3-interface-proofs.md) distinguishes executable edges from merely declared relationships.
 
 ## Ecosystem authorities
 
 | Repository | Current responsibility | Lifecycle / authority state | Concrete evidence |
 | --- | --- | --- | --- |
-| `knowledge-ecosystem-docs` | ecosystem reference architecture, responsibility registry and integration roadmap | active · ecosystem architecture authority | repository `SYSTEM.yaml`; this docs build and W0–W2 bundle |
-| `kb-contracts` | shared knowledge artifact identity, provenance/integrity, compatibility and interoperability contracts | active · shared interoperability authority | `README.md` blob `d7c5de0`; `SYSTEM.yaml` blob `9c4cb16`; `kb-interop.v1-rc1`; offline `npm run contract:validate` |
+| `knowledge-ecosystem-docs` | ecosystem reference architecture, responsibility registry and integration roadmap | active · ecosystem architecture authority | repository `SYSTEM.yaml`; W0–W3 documentation and docs build |
+| `kb-contracts` | shared knowledge artifact identity, provenance/integrity, compatibility and interoperability contracts | active · shared interoperability authority | current release surface, `SYSTEM.yaml`, `kb-interop.v1-rc1`, offline contract validation |
 
 ## Active producers and bounded consumers
 
-| Repository | Evidence-backed boundary | Lifecycle / state | Concrete evidence | Reconciliation status |
-| --- | --- | --- | --- | --- |
-| `kb-artifacts` | deterministic inspection/filtering/selection and reproducible evidence export; producer-owned selection/promotion mechanics | active · producer | README `d2d8070`; AGENTS `5acd983`; current `kb-artifact` CLI and bounded Make surfaces | W2 proposed in [PR #10](https://github.com/matuteiglesias/kb-artifacts/pull/10): current identity `repo.kb-artifacts`, routing alias and command surface reconciled |
-| `knowledge-inspect` | bounded inspection, summary/run-manifest and analysis-output production without hidden source mutation | active · producer | SYSTEM `3a3c98d`; AGENTS `1ace2d2`; Makefile `f644529`; `make health`, `make smoke`, `make verify-run-evidence-demo` | W2 proposed in [PR #19](https://github.com/matuteiglesias/knowledge-inspect/pull/19): current upstream/downstream identities, exclusions and command surface reconciled |
-| `paper-kb` | paper ingestion/parsing, paper corpus/chunks, review exports and corpus/API operator surface | active · paper-corpus producer | SYSTEM `486c2c0`; README `8cbe365`; current `corpus-*`, `export-review`, `api-corpus` Make targets | W2 proposed in [PR #12](https://github.com/matuteiglesias/paper-kb/pull/12): current identity `repo.paper-kb` and operator command surface reconciled |
-| `context-routing` | safe published discovery projection and logical resource catalog over selected governed context sources | active · routing projection | SYSTEM `884b7ba`; README `0aa2be2`; deterministic fixture/internal-registry generator + Docusaurus build | W2 proposed in [PR #4](https://github.com/matuteiglesias/context-routing/pull/4): current identity `repo.context-routing`, upstream aliases, commands and generated paths reconciled |
-| `matias-context-mcp` | bounded read-only MCP resource gateway over explicit logical resources; source repositories remain authoritative | active · gateway | SYSTEM `e28f866`; README `7534ded`; AGENTS `8f0781c`; server/client/probe surfaces | W2 proposed in [PR #6](https://github.com/matuteiglesias/matias-context-mcp/pull/6): current upstream identities, command surface, checkout examples and links reconciled; runtime-status prose remains verification debt |
-| `abstract-scroller` | immutable snapshot/review surface over prepared CSV / `review_node` records | active · review-snapshot capability | README `d0c2211`; Makefile `3dd7b0b`; 2026-05-20 `review_node` ingest commit `c1bad9b` | W2 boundary declaration proposed in [PR #2](https://github.com/matuteiglesias/abstract-scroller/pull/2); exact producer-consumer edge remains W3 work |
+| Repository | Evidence-backed boundary | Lifecycle / state | Current reconciliation / proof status |
+| --- | --- | --- | --- |
+| `kb-artifacts` | deterministic inspection/filtering/selection and reproducible export from producer-agnostic JSONL evidence collections; producer-owned selection/promotion mechanics | active · producer | W2 #10 merged; W3 #11 corrects an unproven direct Knowledge Inspect input claim |
+| `knowledge-inspect` | bounded inspection, summary/run-manifest and analysis-output production without hidden source mutation; validates `chunk_set@1` inputs | active · producer/consumer | W2 #19 merged; `paper-kb → knowledge-inspect` PROVEN in W3; W3 #20 removes an unproven direct KB Artifacts downstream claim |
+| `paper-kb` | paper ingestion/parsing, paper corpus/chunks, review exports and corpus/API operator surface | active · paper-corpus producer | W2 #12 merged; `paper-kb → knowledge-inspect` PROVEN by W3 #13 |
+| `context-routing` | safe published discovery projection and logical resource catalog over selected governed context sources | active · routing projection | W2 #4 merged; `context-routing → matias-context-mcp` PROVEN WITH BOUNDED FIX by W3 #5/#8 |
+| `matias-context-mcp` | bounded read-only MCP resource gateway over explicit logical resources; source repositories remain authoritative | active · gateway | W2 #6 merged; Context Routing public catalog compatibility proven with W3 codec repair in #8 |
+| `abstract-scroller` | immutable snapshot/review surface over prepared CSV / `review_node` records | active · review-snapshot capability | W2 #2 merged; producer edge still unproven |
 
 ## Superseded / historical systems
 
 | Repository | Historical role | State | Evidence |
 | --- | --- | --- | --- |
-| `knowledge-flow` | owner-held RAGFlow copy/experiment | superseded; not current knowledge-stack authority | `LIFECYCLE.md` blob `a6ed2ef`; upstream-style README `15293cb`; supersession merge `a8e318c` |
+| `knowledge-flow` | owner-held RAGFlow copy/experiment | superseded; not current knowledge-stack authority | lifecycle declaration + supersession merge |
 | legacy three-module pages in this site | paper-centric `paper-kb → KB → abstract-scroller` reference model | historical architecture evidence | [Ecosystem Blueprint](./ecosystem-blueprint.md) and [Module Boundaries](./module-boundaries.md) |
 
-## Conservative current responsibility graph
+## Current proof-aware graph
 
 ```text
 paper-kb
-paper-corpus producer
-      │
-      ├──────────────► abstract-scroller
-      │                 review/snapshot surface
-      │                 (edge unproven)
-      ▼
-  kb-contracts
-(shared interoperability)
-      │
- ┌────┴───────────────┐
- ▼                    ▼
-knowledge-inspect   kb-artifacts
- inspection/run      selection/export
- evidence              evidence
- │                    │
- └────────┬───────────┘
-          ▼
-    context-routing
-          │
-          ▼
-  matias-context-mcp
-          │
-          ▼
-     humans / agents
+   ║
+   ║ PROVEN: chunk_set@1
+   ▼
+knowledge-inspect
+
+knowledge-inspect       kb-artifacts
+        │                    │
+        │ declared           │ declared
+        └─────────┬──────────┘
+                  ▼
+            context-routing
+                  ║
+                  ║ PROVEN WITH FIX:
+                  ║ generated public catalog
+                  ▼
+          matias-context-mcp
+                  │
+                  ▼
+             humans / agents
+
+knowledge-inspect ─────X─────► kb-artifacts
+                    no direct current seam proven;
+                    W3 corrects the metadata
+
+paper-kb ── declared/unproven ──► abstract-scroller
 ```
 
-This is an evidence-backed **responsibility graph**, not a claim that every arrow has passed an end-to-end interface proof. W3 owns that stronger claim.
+Legend:
 
-`abstract-scroller` is now a declared bounded capability rather than an unresolved repo, but it is not an obligatory hub or shared authority. `knowledge-flow` remains explicitly outside the current graph.
+- **PROVEN**: an exact producer artifact crosses the boundary and is accepted under executable consumer validation.
+- **PROVEN WITH FIX**: the proof found real drift; a bounded compatibility repair plus regression evidence establishes the edge.
+- **declared**: architecture/responsibility evidence exists, but executable producer-consumer compatibility has not yet been demonstrated.
+- **X / corrected**: W3 inspected a previously claimed direct edge and found no current concrete handoff.
+
+## Proven edge registry
+
+| Producer | Interface | Consumer | Status | Proof |
+| --- | --- | --- | --- | --- |
+| `paper-kb` | `chunk_bus / chunk_set / schema_version=1` emitted by the existing chunk-set writer | `knowledge-inspect` chunk-set validator CLI | PROVEN | paper-kb PR #13; exact producer output + consumer validator + writer regression |
+| `context-routing` | generated `static/context-data/sources.json`, public `context_source@1` projections | MCP logical resource `published-source-catalog` | PROVEN WITH FIX | Context Routing PR #5 + MCP PR #8; exact SHA/size + privacy/projection checks + both regression suites |
+
+## Corrected non-edge registry
+
+### `knowledge-inspect → kb-artifacts`
+
+W2 metadata described a direct relationship, but W3 could not find a direct current handoff.
+
+Knowledge Inspect's current primary analysis surfaces include JSON summary/run evidence. KB Artifacts' current ingestion surface is producer-agnostic JSONL evidence collections. That means a useful future conversion may be possible, but the direct edge does not exist merely because both systems work with evidence.
+
+W3 therefore proposes metadata corrections rather than a speculative adapter:
+
+- KB Artifacts PR #11: actual JSONL input boundary; no direct Knowledge Inspect upstream claim.
+- Knowledge Inspect PR #20: no direct KB Artifacts downstream claim; JSONL adaptation remains outside its owned boundary.
 
 ## Identity normalization
 
-After the W2 proposals merge, current repository identities should be expressed as:
+Current repository identities are:
 
 ```text
 repo.kb-contracts
@@ -81,7 +105,7 @@ repo.matias-context-mcp
 repo.abstract-scroller
 ```
 
-Historical aliases such as `repo.context`, `repo.gpt-digests`, or `repo.knowledge-base-app` remain migration evidence. They should not silently stand in for the current repositories in active architecture metadata.
+Historical aliases such as `repo.context`, `repo.gpt-digests`, or `repo.knowledge-base-app` remain migration evidence. They should not silently stand in for current repositories in active architecture metadata.
 
 ## Observed estate not yet promoted
 
@@ -116,4 +140,4 @@ Promote or materially change a registry row only after a boundary pass answers:
 5. Which contracts are shared versus producer-owned?
 6. What command, fixture or recent evidence supports the claimed boundary?
 
-When repository prose disagrees, record the disagreement and route it to repository reconciliation rather than silently choosing a winner. When an edge is important, route it to W3 interface proof rather than treating a diagram arrow as executable evidence.
+An important edge becomes `proven` only after an exact producer artifact/API/CLI and consumer validation path execute successfully. A failed proof may justify a bounded compatibility fix or removal of the arrow; it is never permission to invent an adapter merely to preserve the diagram.
