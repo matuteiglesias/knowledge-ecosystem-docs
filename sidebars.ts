@@ -12,6 +12,7 @@ const sidebars: SidebarsConfig = {
         'architecture/ecosystem-registry',
         'architecture/knowledge-lifecycle',
         'architecture/w1-estate-reconstruction',
+        'architecture/w2-repository-reconciliation',
         'architecture/public-vs-private-surfaces',
         'architecture/battle-tests',
       ],
