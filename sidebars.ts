@@ -24,12 +24,16 @@ const sidebars: SidebarsConfig = {
         'roadmap/end-state',
       ],
     },
-    'quickstart',
     {
       type: 'category',
       label: 'Historical Blueprint',
       collapsed: true,
       items: [
+        {
+          type: 'doc',
+          id: 'quickstart',
+          label: 'Historical runnable path',
+        },
         'architecture/ecosystem-blueprint',
         'architecture/module-boundaries',
       ],
