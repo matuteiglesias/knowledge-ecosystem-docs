@@ -8,9 +8,9 @@ sidebar_position: 1
 
 ## Mission
 
-Turn the knowledge-management estate from a set of individually useful repositories into a **legible, governed ecosystem** without merging repos or inventing a universal platform.
+Turn the knowledge-management estate from individually useful repositories into a **legible, governed ecosystem** without merging repos or inventing a universal platform.
 
-The bundle follows the same principle that works in scientific-system recovery: reconstruct truth, separate responsibilities, prove real interfaces, then add low-cost sensing.
+The operating sequence is: reconstruct truth → separate responsibilities → prove real interfaces → add cheap sensing → stop until real downstream use demands more.
 
 ## Hard invariants
 
@@ -20,135 +20,67 @@ The bundle follows the same principle that works in scientific-system recovery: 
 - repository names never imply authority.
 - legacy systems remain inspectable; authority can move without deleting history.
 - no broad repo consolidation merely to simplify the diagram.
-- no synthesis/publication implementation is created by this bundle.
+- no synthesis/publication implementation is created without a real consumer need.
 
 ## Wave 0 — Reference authority reseed
 
-**Goal:** establish a trustworthy control surface before changing producers.
+**Status:** accepted and merged on 2026-08-28.
 
-**Status:** accepted and merged on 2026-08-28 as part of `knowledge-ecosystem-docs#1`.
-
-Delivered:
-
-- repository authority declaration;
-- current reference architecture above the historical three-module blueprint;
-- authority/precedence model;
-- ecosystem registry;
-- knowledge lifecycle with future synthesis/publication seam;
-- old blueprint retained as historical evidence;
-- docs build/typecheck gate.
+Established repository authority, current reference architecture, precedence model, ecosystem registry, knowledge lifecycle and documentation CI while retaining historical architecture evidence.
 
 ## Wave 1 — Estate reconstruction
 
-**Goal:** replace bootstrap inventory with evidence-backed current boundaries.
+**Status:** complete for the bounded central tranche.
 
-**Status:** complete for the bounded central tranche on 2026-08-28. See [W1 Estate Reconstruction](../architecture/w1-estate-reconstruction.md).
-
-Evidence-backed rows cover:
-
-- `kb-contracts`;
-- `kb-artifacts`;
-- `knowledge-inspect`;
-- `paper-kb`;
-- `context-routing`;
-- `matias-context-mcp`;
-- `abstract-scroller`;
-- `knowledge-flow` as explicitly superseded.
-
-Broader systems such as `journal`, historical `gpt-digests`, `llm-flow-engine`, automation repos and domain knowledge bases remain observed until a real consumer path or authority conflict makes another tranche useful.
+Evidence-backed rows cover `kb-contracts`, `kb-artifacts`, `knowledge-inspect`, `paper-kb`, `context-routing`, `matias-context-mcp`, `abstract-scroller`, and `knowledge-flow` as superseded.
 
 ## Wave 2 — Repository reconciliation
 
-**Goal:** make active repositories tell the same identity/boundary story using the smallest justified edits.
+**Status:** accepted and merged across the six active central repositories on 2026-08-28.
 
-**Status:** accepted and merged across all six central repositories on 2026-08-28. See [W2 Repository Reconciliation](../architecture/w2-repository-reconciliation.md).
-
-Accepted PRs:
-
-| Repository | PR |
-| --- | --- |
-| `kb-artifacts` | [#10](https://github.com/matuteiglesias/kb-artifacts/pull/10) |
-| `paper-kb` | [#12](https://github.com/matuteiglesias/paper-kb/pull/12) |
-| `knowledge-inspect` | [#19](https://github.com/matuteiglesias/knowledge-inspect/pull/19) |
-| `context-routing` | [#4](https://github.com/matuteiglesias/context-routing/pull/4) |
-| `matias-context-mcp` | [#6](https://github.com/matuteiglesias/matias-context-mcp/pull/6) |
-| `abstract-scroller` | [#2](https://github.com/matuteiglesias/abstract-scroller/pull/2) |
-
-`knowledge-flow` remains superseded and was deliberately not revived.
+Repository identities, canonical commands and responsibility declarations were reconciled without changing runtime merely to match the docs.
 
 ## Wave 3 — Interface proof
 
-**Goal:** convert important arrows in the architecture into reproducible producer-consumer proofs.
+**Status:** bounded core tranche accepted. See [W3 Interface Proofs](../architecture/w3-interface-proofs.md).
 
-For a proven edge, pin:
+Accepted/corrected results:
 
-```text
-producer
-  ↓ exact artifact / API / CLI
-contract or producer-owned schema
-  ↓ validation
-consumer
-  ↓ observable output / transport
-proof
-```
+- `context-routing → matias-context-mcp`: **accepted**; real public routing artifact crosses the MCP boundary and an authority-policy bug was repaired.
+- `paper-kb → knowledge-inspect`: **accepted**; the real Paper KB chunk-set writer is validated by the real Knowledge Inspect consumer CLI.
+- `paper-kb → abstract-scroller`: **accepted and strengthened**; initial CSV proof evolved to producer-owned `paper.review-record@1` feeding immutable snapshots while legacy formats remain compatibility surfaces.
+- `knowledge-inspect ↛ kb-artifacts`: **corrected non-edge**; no current direct handoff exists, so both repositories removed overstated dependency metadata rather than inventing an adapter.
 
-### First tranche
+Paper KB additionally completed P0–P5 internal hardening: modular component boundaries, producer-owned review contract, canonical review projection, consumer proof, interface precedence and executable architecture/identity guards.
 
-**Status:** two edges are CI-proven on draft consumer PRs; pending human acceptance/merge. See [W3 Interface Proofs](../architecture/w3-interface-proofs.md).
-
-#### `context-routing → matias-context-mcp`
-
-Proof PR: [`matias-context-mcp#7`](https://github.com/matuteiglesias/matias-context-mcp/pull/7)
-
-W3 pinned `context_catalog@1`, the versioned producer artifact, exact provenance/SHA and the real `mctx` MCP-stdio read. The proof exposed and fixed a consumer authority-boundary bug: MCP was expecting private routing-registry fields and re-applying publication policy to an already-sanitized public artifact.
-
-#### `paper-kb → abstract-scroller`
-
-Proof PR: [`abstract-scroller#3`](https://github.com/matuteiglesias/abstract-scroller/pull/3)
-
-W3 uses Paper KB's actual review-CSV export and feeds it directly into Abstract Scroller's snapshot builder. The proof exposed and fixed an optional-column ingestion defect in the consumer without changing the producer export.
-
-### Remaining W3 frontier
-
-Prefer independent bounded slices rather than one mega-integration:
-
-1. **`paper-kb → knowledge-inspect`** — identify one exact current paper/chunk/review artifact accepted by inspection and prove validation without importing producer internals.
-2. **`knowledge-inspect → kb-artifacts`** — identify the exact run/summary/evidence handoff actually consumed by selection; do not infer compatibility from historical naming.
-3. **governed evidence → `context-routing`** — prove which `knowledge-inspect` / `kb-artifacts` outputs become routable published entries and which remain intentionally private.
-
-Do not promote every producer-local interface into `kb-contracts`. Shared contracts should emerge only from repeated interoperability need.
+Remaining W3 frontier is intentionally narrow: prove governed outputs → `context-routing` only when a concrete publication/routing workflow makes that edge valuable.
 
 ## Wave 4 — Operability and sensing
 
-**Goal:** detect ecosystem drift cheaply without centralizing orchestration.
+**Status:** first bounded tranche implemented on 2026-08-29. See [W4 Operability and Sensing](../operations/w4-operability-and-sensing.md).
 
-Candidates:
+Delivered:
 
-- contract/interface compatibility checks;
-- expected artifact/freshness probes;
-- stale corpus detection;
-- repository-boundary drift checks;
-- scheduled docs/registry reconciliation report.
+- checked-in manifest of six public active `SYSTEM.yaml` surfaces;
+- dependency-free Python drift sensor for stable repository identity/lifecycle markers;
+- weekly GitHub Actions schedule plus manual dispatch;
+- private `context-routing` explicitly remains a manual surface rather than broadening credentials;
+- first semantic reconciliation pass found and repaired high-value boundary drift in `kb-contracts` and `knowledge-inspect` metadata.
 
-W3's executable edge proofs are natural future sensors: they can later detect producer-consumer drift without adding a universal orchestration layer.
+The sensor is deliberately not a central orchestrator. It makes disappearance or identity drift visible cheaply; semantic boundary changes still require evidence-aware review.
 
-**DoD:** important deterioration can become visible without manually opening every repository.
+**W4 bounded DoD:** important public boundary deterioration can become visible without manually opening every repository and without cross-repository write credentials.
 
 ## Wave 5 — Downstream consumer handoff
 
-**Goal:** prepare, but do not overbuild, the `knowledge → synthesis → publication` consumer seam.
+**Status:** deliberately not started.
 
-Only after real synthesis work exists, define the minimum digital contracts needed for:
+W5 prepares the future `knowledge → synthesis → publication → response` seam only after a real repeated consumer exists. Candidate concepts such as evidence references, insight candidates, claims, editorial artifacts, publications and responses remain design notes rather than shared contracts.
 
-- evidence references;
-- insight candidates;
-- claims and confidence;
-- canonical editorial artifacts;
-- publications/projections;
-- responses returning upstream.
-
-This wave belongs in a separate thin contract/domain boundary unless evidence shows an existing repo already owns it.
+The current architecture work has reduced enough uncertainty that implementing W5 now would be speculative. The correct next regime is **integration → real use → observation → selective evolution**.
 
 ## Stop rule
 
 The bundle succeeds when the estate is **legible, composable and cheaply testable at important seams**. It fails if it becomes an excuse to refactor every knowledge repository, build a universal UI/orchestrator, or automate editorial judgment before a repeated consumer need exists.
+
+After W4's first sensor tranche, additional architecture work should be pulled by observed drift or concrete downstream use rather than by wave completion for its own sake.
