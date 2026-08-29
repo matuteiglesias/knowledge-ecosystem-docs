@@ -1,0 +1,42 @@
+{
+  "schema_id": "knowledge_ecosystem.public_system_surfaces",
+  "schema_version": 1,
+  "surfaces": [
+    {
+      "repository": "matuteiglesias/kb-contracts",
+      "path": "SYSTEM.yaml",
+      "required_markers": ["id: repo.kb-contracts", "github: matuteiglesias/kb-contracts", "lifecycle: active"]
+    },
+    {
+      "repository": "matuteiglesias/kb-artifacts",
+      "path": "SYSTEM.yaml",
+      "required_markers": ["id: repo.kb-artifacts", "github: matuteiglesias/kb-artifacts", "lifecycle: active"]
+    },
+    {
+      "repository": "matuteiglesias/knowledge-inspect",
+      "path": "SYSTEM.yaml",
+      "required_markers": ["id: repo.knowledge-inspect", "github: matuteiglesias/knowledge-inspect", "lifecycle: active"]
+    },
+    {
+      "repository": "matuteiglesias/paper-kb",
+      "path": "SYSTEM.yaml",
+      "required_markers": ["id: repo.paper-kb", "github: matuteiglesias/paper-kb", "lifecycle: active"]
+    },
+    {
+      "repository": "matuteiglesias/matias-context-mcp",
+      "path": "SYSTEM.yaml",
+      "required_markers": ["id: repo.matias-context-mcp", "github: matuteiglesias/matias-context-mcp", "lifecycle: active"]
+    },
+    {
+      "repository": "matuteiglesias/abstract-scroller",
+      "path": "SYSTEM.yaml",
+      "required_markers": ["id: repo.abstract-scroller", "github: matuteiglesias/abstract-scroller", "lifecycle: active"]
+    }
+  ],
+  "manual_surfaces": [
+    {
+      "repository": "matuteiglesias/context-routing",
+      "reason": "private sibling repository; the public docs runner must not receive broader credentials merely for sensing"
+    }
+  ]
+}

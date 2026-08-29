@@ -6,173 +6,78 @@ sidebar_position: 7
 
 # W3 Interface Proofs
 
-**Execution date:** 2026-08-28  
-**Wave:** W3 — Interface proof  
-**Status:** first bounded tranche implemented and green in CI; consumer PRs pending human acceptance/merge.
+**Execution:** 2026-08-28 to 2026-08-29  
+**Status:** bounded core tranche accepted; remaining arrows are explicitly declared, corrected, or deferred.
 
-W3 upgrades selected arrows from an architectural responsibility claim to executable evidence:
-
-```text
-producer
-  ↓ exact artifact / command
-producer-owned or shared contract boundary
-  ↓ consumer validation
-consumer
-  ↓ observable downstream artifact / transport
-proof
-```
-
-The first tranche deliberately proves only two edges. It does not attempt to turn the whole estate into one integration test.
+W3 changed the ecosystem standard from plausible responsibility arrows to executable producer-consumer evidence.
 
 ## Proof state vocabulary
 
-- **declared** — repository boundaries say the relationship should exist.
-- **CI-proven** — an executable proof pins the producer/interface and passes on a reviewable consumer PR.
-- **accepted** — the proof/fix has been reviewed and merged to the consumer's `main`.
+- **declared** — repository boundaries say a relationship should exist.
+- **CI-proven** — real producer/interface bytes cross into the real consumer and observable assertions pass.
+- **accepted** — the proof/fix is merged to the relevant repository `main`.
+- **corrected non-edge** — inspection found no current direct seam; metadata is changed rather than inventing an adapter.
 
-A green draft PR is not silently recorded as accepted production truth.
+## Accepted edge — `context-routing → matias-context-mcp`
 
-## Edge A — `context-routing → matias-context-mcp`
+**Consumer acceptance:** `matias-context-mcp#7`, merged as `18a11c02c9f5040ca966b99959afb7167645d9dd`.  
+**Producer-side cross proof:** `context-routing#5`, merged.
 
-**Proof PR:** [`matias-context-mcp#7`](https://github.com/matuteiglesias/matias-context-mcp/pull/7)  
-**State:** CI-proven; pending merge.
+The proof moved the versioned public `context_catalog@1` projection through the real MCP read path. It exposed an authority-boundary bug: the consumer attempted to re-apply private publication policy to an already-sanitized public artifact. The accepted fix validates and exposes the producer-owned public contract without reconstructing private routing decisions.
 
-### Pinned interface
+The public consumer proof deliberately uses only public projected bytes/provenance. No broad private-repository credential was added merely to make CI green.
 
-| Item | Identity |
-| --- | --- |
-| producer | `matuteiglesias/context-routing` |
-| accepted producer parent on `main` | `2b5050522b86967c77699daf0c7a751468496831` |
-| producer artifact | `static/context-data/v1/sources.json` |
-| producer Git blob SHA-1 | `8017318abe428626d71df17b711489dd9746b712` |
-| artifact SHA-256 | `0f3b9830087edf8bc93105523c843161f96bb580a06663f82d6c2bdb4c47a31c` |
-| contract identity | `context_catalog@1` |
-| consumer logical URI | `matias-context://source/context-routing/document/published-source-catalog` |
-| consumer transport | real MCP `stdio` through `mctx` |
+## Accepted edge — `paper-kb → knowledge-inspect`
 
-### Defect exposed by the proof
+**Proof:** `paper-kb#13`, merged.
 
-The producer's current public catalog is already a sanitized allow-list. It intentionally omits private control-plane fields such as `publish_status` and `exposure_level`.
+Paper KB's real chunk-set writer emits the producer-owned paper chunk artifact; the exact generated artifact is validated through Knowledge Inspect's real public validator CLI. Producer identity, counts and contract behavior are asserted, followed by producer regression tests.
 
-The MCP consumer still expected an older/private registry representation and attempted to re-apply publication policy using those absent fields. The JSON file was readable, but the real current public catalog could normalize to zero sources.
+W3 therefore does **not** require `kb-contracts` to own the paper chunk-set schema. The interoperability need is currently satisfied by a producer-owned artifact plus an explicit consumer validation boundary.
 
-This was an authority-boundary error:
+## Accepted review edge — `paper-kb → abstract-scroller`
+
+W3 first proved the historical review CSV through `abstract-scroller#3`, exposing and fixing an optional-column ingestion defect in the consumer.
+
+P0–P4 then strengthened the seam:
 
 ```text
-context-routing
-  owns publication eligibility
-          ↓
-  safe public projection
-          ↓
-matias-context-mcp
-  owns bounded exposure/read transport
+Paper KB governed chunk_set
+        ↓
+producer-owned paper.review-record@1
+        ↓
+Abstract Scroller compatibility adapter
+        ↓
+immutable review snapshot
 ```
 
-The consumer must validate and expose the producer's public contract; it must not reconstruct the producer's private publication decision.
+`paper.review-record@1` is owned by Paper KB. Abstract Scroller validates only the compatibility surface it needs and does not vendor the producer schema. `paper_uid` survives as snapshot identity. CSV and the local `review_node_jsonl` experiment remain compatibility surfaces rather than machine-preferred authority.
 
-### Consumer fix
+## Corrected non-edge — `knowledge-inspect ↛ kb-artifacts`
 
-The W3 PR:
+W3 inspected both real implementations and could not prove the previously implied direct handoff.
 
-- pins the versioned `static/context-data/v1/sources.json` path rather than the compatibility alias;
-- validates `context_catalog@1` and its public source identities/counts;
-- preserves the producer's safe public allow-list while applying a final consumer field allow-list;
-- rejects the obsolete private-registry shape rather than guessing;
-- adds regression tests for path, contract identity, count and field behavior.
+Knowledge Inspect currently emits its producer-owned analysis/run artifacts. KB Artifacts consumes producer-agnostic JSONL evidence collections. No exact current adapter connects those surfaces.
 
-### Evidence boundary for a private producer
+Accepted metadata corrections in `knowledge-inspect#20` and `kb-artifacts#11` remove the false direct edge. A future adapter should exist only when a concrete workflow requires one.
 
-`context-routing` is private. The MCP repository's ordinary GitHub Actions token cannot read a sibling private repository. W3 deliberately does not add a PAT or broaden repository credentials merely to make an integration test green.
+This is a successful W3 result: removing an invented arrow improves architecture truth.
 
-Instead the consumer freezes **only the exact bytes of the already-public projection**, with provenance recording producer repository, accepted commit, artifact path, Git blob, byte size and SHA-256. No private control-plane registry data is copied.
+## Relationship discovered between Knowledge Inspect and KB Artifacts
 
-CI then proves those exact bytes through a real `mctx` MCP session and requires the gateway payload and SHA-256 to match the pinned evidence.
+The two repositories are better understood as orthogonal capabilities:
 
-This is a bounded evidence capsule, not a second authority for Context Routing.
+- **Knowledge Inspect** — semantic/analytical inspection; produces evidence-bearing derived artifacts and run-level provenance; does not own evidence promotion.
+- **KB Artifacts** — deterministic corpus exploration and governed evidence selection/promotion mechanics; does not own semantic interpretation.
 
-## Edge B — `paper-kb → abstract-scroller`
+They may participate in future loops (deterministic narrowing before inspection, or governed promotion after inspection) without requiring a direct mandatory pipeline today.
 
-**Proof PR:** [`abstract-scroller#3`](https://github.com/matuteiglesias/abstract-scroller/pull/3)  
-**State:** CI-proven; pending merge.
+## Remaining frontier
 
-### Pinned interface
+The highest-value unproven relationship is now narrower:
 
-| Item | Identity |
-| --- | --- |
-| producer | `matuteiglesias/paper-kb` |
-| producer commit | `d65a6f9bd6fff3e2f25768785753856cd9adcb6a` |
-| producer surface | `backend.exports.export_review_csv` / `make export-review` |
-| interface | review CSV |
-| CSV fields | `doc_id,title,abstract,date,year,venue,tags,badges,source_url,paper_id` |
-| consumer | `matuteiglesias/abstract-scroller` |
-| consumer surface | `backend.jobs.mvp_snapshot --format csv` |
-| downstream evidence | snapshot manifest + Brotli tile |
+- governed producer/evidence outputs → `context-routing`: prove which outputs become published routable entries and which remain private.
 
-W3 follows the executable interface that exists today. It does not force the older `review_node` framing merely because historical architecture pages discussed it.
+Direct MCP reads of specific producer manifests can be proven independently when a real consumer workflow requires them.
 
-### End-to-end proof
-
-The cross-repository workflow:
-
-1. checks out the exact public Paper KB producer commit;
-2. creates bounded chunk-set artifacts;
-3. uses Paper KB's real `ChunkSetStorageAdapter` and `export_review_csv` implementation;
-4. validates the exact current CSV header and document identities/content;
-5. feeds that CSV directly to the real Abstract Scroller snapshot job;
-6. verifies the snapshot manifest document count;
-7. decompresses the first tile and proves `doc_id`, title and abstract survive the boundary.
-
-No hand-written adapter sits between producer and consumer.
-
-### Defect exposed by the proof
-
-Paper KB's valid review CSV does not include the optional `has_code` field.
-
-Abstract Scroller intended missing optional fields to receive defaults, but the implementation used:
-
-```text
-df.get("has_code", 0)
-```
-
-When the column was absent, that returned scalar `0`; the normalizer then attempted `.fillna()` on the scalar and failed before snapshot construction.
-
-The fix remains consumer-local: absent optional columns are materialized as row-aligned default Series before type normalization. Paper KB's export is unchanged.
-
-The repository's ordinary CI and the dedicated W3 cross-repository proof both pass on the current PR head.
-
-## What W3 did not centralize
-
-Neither proof justified a new shared platform:
-
-- `context_catalog@1` remains owned by the routing producer; MCP consumes it.
-- the Paper KB review CSV remains a producer/consumer interface rather than being prematurely promoted into `kb-contracts`.
-
-A shared contract should emerge from repeated interoperability need, not from a desire to make every arrow look symmetric.
-
-## Architectural lessons from the first tranche
-
-### Executable evidence is stronger than naming similarity
-
-Both edges looked plausible in the responsibility graph. Both contained hidden incompatibilities. W3 found them only by moving a real artifact across the seam.
-
-### Producer policy and consumer policy must remain distinct
-
-A public projection should not require a consumer to know or reproduce the private decision process that created it.
-
-### Optional-field behavior is part of compatibility
-
-A consumer that claims fields are optional must test the absent-field case against a real producer, not only fixtures that happen to contain the field.
-
-### Pin the boundary, not the whole universe
-
-The proof pins exactly the producer commit/artifact/surface needed to establish the relationship. It does not create a universal integration environment or synchronize every repository.
-
-## Remaining W3 frontier
-
-After these two proofs, the higher-value unproven core is:
-
-1. **`paper-kb → knowledge-inspect`** — identify one exact current paper/chunk/review artifact accepted by the inspection producer and prove validation without importing producer internals.
-2. **`knowledge-inspect → kb-artifacts`** — prove the exact run/summary/evidence handoff consumed by selection; do not infer it from similarly named historical contracts.
-3. **governed evidence → `context-routing`** — prove which `knowledge-inspect` / `kb-artifacts` outputs become routable published entries and which remain intentionally private.
-
-Those edges should be pulled as independent bounded slices. W3 does not require proving every historical or optional arrow before moving on.
+W3 is not blocked on proving every historical or optional arrow. Its core purpose — distinguish real seams from inferred ones and make important deterioration testable — is complete enough to proceed to W4 sensing.
