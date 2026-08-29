@@ -84,6 +84,7 @@ const sidebars: SidebarsConfig = {
       label: 'Operations',
       collapsed: true,
       items: [
+        'operations/w4-operability-and-sensing',
         'operations/commands',
         'operations/troubleshooting',
         'operations/stale-and-legacy-surfaces',
