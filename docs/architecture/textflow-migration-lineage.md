@@ -6,9 +6,9 @@ sidebar_position: 9
 
 # Textflow Migration Lineage
 
-**Status:** repository-visible migration closed through W6 on 2026-08-30.  
+**Status:** migration and repository closure complete through W7 on 2026-08-30.  
 **Predecessor:** `matuteiglesias/textflow-core`  
-**Lifecycle:** superseded; no longer a current knowledge-system authority.
+**Lifecycle:** superseded · archive-ready; GitHub Archive/read-only toggle pending.
 
 Textflow is useful predecessor evidence, not a system to preserve as a single successor runtime. Its historical responsibilities were decomposed into the authorities that now own the corresponding concerns.
 
@@ -98,17 +98,33 @@ Textflow PR `#6` records the final W3–W5 disposition ledger.
 
 ## W6 — architecture reconciliation
 
-W6 updates this architecture authority to describe those merged facts rather than the old predecessor shape.
+W6 updated the canonical architecture authority to describe merged implementation truth rather than the old predecessor shape. It merged as `knowledge-ecosystem-docs@847759e2a44fb360ac387e603f1b5b9c91e293ad` with docs CI green.
 
 Important consequences:
 
 1. `textflow-core` appears only under historical/superseded systems.
 2. `gpt-digests` is not named as a successor.
-3. `knowledge-experiences` is recognized as the active composition authority supported by its real-source experience evidence.
+3. `knowledge-experiences` is recognized as the active composition authority supported by real-source experience evidence.
 4. `knowledge-inspect ↛ kb-artifacts` remains a corrected non-edge.
 5. producer artifacts may flow directly to Knowledge Inspect **or** Knowledge Experiences when the consumer contract requires it.
 6. no Textflow capability fans out into every subsystem merely because it once lived in one repository.
-7. no new `kb-contracts` schema is justified by the migration.
+7. no new `kb-contracts` schema was justified by the migration.
+
+## W7 — predecessor repository closure
+
+W7 merged in Textflow at `e3c94cc64ad37801a82ad9e8defce3a24def8f81`.
+
+It changed only:
+
+- `README.md` — prominent superseded/archive-ready banner and historical-use framing;
+- `LIFECYCLE.md` — exact migration baseline/final migration commit, W6 architecture evidence, owner closure and archive gate;
+- `docs/CAPABILITY_LEDGER.md` — final W3–W7 evidence pointers and resolved dispositions.
+
+Historical runtime code, demos, requirements and the vendored/reference RAPTOR subtree were intentionally left untouched.
+
+The owner authorized archival closure and stated that machine-local Textflow data/stores were demo material with no valuable unique data requiring rescue. GitHub cannot independently inspect local cron/systemd/aliases, so the W7 record does not fabricate such a scan; it records the owner decision that no operational Textflow runtime or local truth needs preservation.
+
+The repository is therefore **archive-ready**. The only remaining action is GitHub's repository Archive/read-only setting, which is not exposed by the connected tool used for this work.
 
 ## Evidence-backed successor graph
 
@@ -143,6 +159,6 @@ This graph intentionally contains missing edges. A consumer-driven seam is evide
 
 ## Closure rule
 
-No further Textflow migration wave is implied by historical code remaining in the predecessor repository. Future work must be pulled by a concrete current consumer and implemented in the authority that owns the relevant source, inspection, selection, composition, routing or rendering responsibility.
+No further Textflow migration or repository-development wave is implied by historical code remaining inspectable. Future work must be pulled by a concrete current consumer and implemented in the authority that owns the relevant source, inspection, selection, composition, routing or rendering responsibility.
 
-W7 is repository closure only: preserve the historical code unchanged, mark the predecessor archive-ready after owner/local closure, and use the GitHub archive setting when desired.
+Textflow is now predecessor evidence awaiting only the administrative GitHub Archive toggle.
