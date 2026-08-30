@@ -17,6 +17,7 @@ const sidebars: SidebarsConfig = {
         'architecture/w3-interface-proofs',
         'architecture/textflow-w2-status',
         'architecture/textflow-migration-lineage',
+        'architecture/promptflow-execution-lineage',
         'architecture/public-vs-private-surfaces',
         'architecture/battle-tests',
       ],
