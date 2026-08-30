@@ -92,7 +92,7 @@ Corpus identity/production is the durable center. API, derivations, inspection, 
 
 ## Textflow lineage
 
-`textflow-core` is a superseded predecessor, not a live node in the topology above. Its useful capabilities were decomposed rather than replaced by one successor:
+`textflow-core` is a superseded, **archive-ready** predecessor, not a live node in the topology above. Its useful capabilities were decomposed rather than replaced by one successor:
 
 ```text
 Textflow predecessor
@@ -104,7 +104,7 @@ Textflow predecessor
    └── speculative digest/FAQ ideas ─► latent until consumer-pulled
 ```
 
-Historical `gpt-digests` naming is not a canonical successor relation. See [Textflow Migration Lineage](./textflow-migration-lineage.md).
+Historical `gpt-digests` naming is not a canonical successor relation. Textflow W7 merged at `e3c94cc64ad37801a82ad9e8defce3a24def8f81`; the GitHub Archive/read-only repository setting remains an administrative toggle outside the connected tool. See [Textflow Migration Lineage](./textflow-migration-lineage.md).
 
 ## Architectural invariants
 
@@ -120,7 +120,7 @@ Historical `gpt-digests` naming is not a canonical successor relation. See [Text
 
 These ecosystem invariants have a narrower companion for knowledge-processing semantics: [Durable Knowledge-Processing Invariants](./durable-knowledge-invariants.md). That page separates knowledge identity from representation and run identity, requires semantic indexes to remain rebuildable derivatives, and assigns proof obligations to the repositories that actually own the relevant runtime. It was extracted from the useful predecessor lessons in `textflow-core` without making that repository—or a new meta-layer—current authority.
 
-## Operating regime after W6
+## Operating regime after W7
 
 The ecosystem is sufficiently legible and composable that further architecture work should be pulled by real use or detected drift.
 
@@ -128,6 +128,6 @@ The ecosystem is sufficiently legible and composable that further architecture w
 integration → real use → observation → selective evolution
 ```
 
-Textflow migration no longer creates an architecture backlog. Its remaining W7 work is predecessor repository closure/archive readiness, not another ecosystem capability wave.
+Textflow migration and repository-closure work no longer create an architecture backlog. The predecessor is archive-ready; only the GitHub repository Archive toggle remains administrative. Future Textflow-derived ideas must be pulled by a concrete current consumer rather than by the existence of historical code.
 
 The original [Ecosystem Blueprint](./ecosystem-blueprint.md) and [Module Boundaries](./module-boundaries.md) remain historical design evidence, not current global authority.
