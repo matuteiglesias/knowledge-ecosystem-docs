@@ -106,6 +106,21 @@ Textflow predecessor
 
 Historical `gpt-digests` naming is not a canonical successor relation. Textflow W7 merged at `e3c94cc64ad37801a82ad9e8defce3a24def8f81`; the GitHub Archive/read-only repository setting remains an administrative toggle outside the connected tool. See [Textflow Migration Lineage](./textflow-migration-lineage.md).
 
+## PromptFlow-era execution lineage
+
+`llm-flow-engine` and `flowpower` are superseded PromptFlow-era experiments, not a missing current orchestration layer. Their useful lessons are decomposed across real owners rather than preserved as a generic executor:
+
+```text
+PromptFlow-era predecessors
+   ├── capability boundary metadata ─► Office / domain-owned executable capabilities
+   ├── prompt + material-config identity ► inference-owning producers such as Evaluar
+   ├── step/run evidence ────────────► runtime owners such as Knowledge Inspect
+   ├── declarative composition ─────► Knowledge Experiences where appropriate
+   └── generic workflow engine ─────► deliberately unassigned
+```
+
+The durable rule is that declared configuration must match executed behavior, executable capabilities expose bounded IO/side-effect/evidence semantics, and consequential stages remain observable. PromptFlow-specific private executors, arbitrary inline code execution, generic API/UI shells and unrealized roadmap claims are not current architecture. See [PromptFlow-era Execution Lineage](./promptflow-execution-lineage.md).
+
 ## Architectural invariants
 
 1. **No repo name implies authority.** Authority must be declared and supported by evidence.
@@ -117,8 +132,11 @@ Historical `gpt-digests` naming is not a canonical successor relation. Textflow 
 7. **Future capability stays future.** Synthesis/publication remains unassigned until repeated use creates a real consumer boundary.
 8. **Important edges should be observable.** Cheap drift sensing is preferable to central orchestration.
 9. **Composition is not synthesis.** Reproducibly assembling governed knowledge into an experience does not grant authority over evidence truth or editorial claims.
+10. **Execution semantics remain domain-owned until reuse is proven.** A generic workflow/runtime contract should be extracted only after independent active consumers converge on the same boundary; predecessor code alone is not evidence of that need.
 
 These ecosystem invariants have a narrower companion for knowledge-processing semantics: [Durable Knowledge-Processing Invariants](./durable-knowledge-invariants.md). That page separates knowledge identity from representation and run identity, requires semantic indexes to remain rebuildable derivatives, and assigns proof obligations to the repositories that actually own the relevant runtime. It was extracted from the useful predecessor lessons in `textflow-core` without making that repository—or a new meta-layer—current authority.
+
+The corresponding execution-lineage companion is [PromptFlow-era Execution Lineage](./promptflow-execution-lineage.md). It records declared-recipe authority, capability metadata, prompt/template identity, bounded execution and step/run evidence as local proof obligations without creating a universal execution schema.
 
 ## Operating regime after W7
 
@@ -129,5 +147,7 @@ integration → real use → observation → selective evolution
 ```
 
 Textflow migration and repository-closure work no longer create an architecture backlog. The predecessor is archive-ready; only the GitHub repository Archive toggle remains administrative. Future Textflow-derived ideas must be pulled by a concrete current consumer rather than by the existence of historical code.
+
+The same pull-based rule governs the PromptFlow-era predecessors: after their current-owner proofs and archive gates are complete, future shared execution work must be justified by convergent current consumers rather than by reopening `llm-flow-engine` or `flowpower`.
 
 The original [Ecosystem Blueprint](./ecosystem-blueprint.md) and [Module Boundaries](./module-boundaries.md) remain historical design evidence, not current global authority.
