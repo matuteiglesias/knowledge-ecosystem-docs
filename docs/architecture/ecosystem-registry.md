@@ -12,7 +12,7 @@ This is the current registry for the knowledge-management estate. Canonical rows
 
 | Repository | Current responsibility | Lifecycle / authority state | Concrete evidence |
 | --- | --- | --- | --- |
-| `knowledge-ecosystem-docs` | ecosystem reference architecture, responsibility registry, lineage and integration roadmap | active · ecosystem architecture authority | repository `SYSTEM.yaml`; current reference architecture; W1–W6 evidence ledger |
+| `knowledge-ecosystem-docs` | ecosystem reference architecture, responsibility registry, lineage and integration roadmap | active · ecosystem architecture authority | repository `SYSTEM.yaml`; current reference architecture; W1–W7 evidence ledger |
 | `kb-contracts` | shared knowledge artifact identity, provenance/integrity, compatibility and interoperability contracts when repeated cross-repo need justifies registration | active · shared interoperability authority | current released contract surface and offline contract validation |
 | `knowledge-experiences` | governed collection membership, experience composition, reproducible releases and renderer-adapter handoffs | active · composition authority | repository `SYSTEM.yaml`; real-source experience census; proven Paper KB, LCD and Git vertical handoffs |
 
@@ -33,7 +33,7 @@ This is the current registry for the knowledge-management estate. Canonical rows
 
 | Repository / surface | Historical role | State | Evidence |
 | --- | --- | --- | --- |
-| `textflow-core` | earlier personal/team RAG pipeline combining JSONL ingest, node identity, embeddings, Chroma, retrieval, clustering, export, optional synthesis and run reports | **superseded · repository-visible migration closed**; not a current authority | Textflow capability ledger; W3–W5 successor closure; [Textflow Migration Lineage](./textflow-migration-lineage.md) |
+| `textflow-core` | earlier personal/team RAG pipeline combining JSONL ingest, node identity, embeddings, Chroma, retrieval, clustering, export, optional synthesis and run reports | **superseded · archive-ready**; migration/closure complete; GitHub Archive toggle pending | Textflow W7 merge `e3c94cc64ad37801a82ad9e8defce3a24def8f81`; capability ledger; [Textflow Migration Lineage](./textflow-migration-lineage.md) |
 | `knowledge-flow` | owner-held RAGFlow copy/experiment | superseded; not current knowledge-stack authority | repository `LIFECYCLE.md`; supersession decision 2026-08-04 |
 | legacy three-module pages in this site | paper-centric `paper-kb → KB → abstract-scroller` reference model | historical architecture evidence | [Ecosystem Blueprint](./ecosystem-blueprint.md) and [Module Boundaries](./module-boundaries.md) |
 | historical `gpt-digests` identity / alias | earlier knowledge/digest experiment identity | historical evidence only; **not** the Textflow successor and not a current canonical authority | predecessor history; replaced by the distributed responsibility map above |
