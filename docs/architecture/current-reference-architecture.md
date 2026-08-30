@@ -97,6 +97,8 @@ Corpus identity/production is the durable center. API, derivations and review su
 7. **Future capability stays future.** Synthesis/publication remains unassigned until repeated use creates a real consumer boundary.
 8. **Important edges should be observable.** W4 adds cheap drift sensing without central orchestration.
 
+These ecosystem invariants now have a narrower companion for knowledge-processing semantics: [Durable Knowledge-Processing Invariants](./durable-knowledge-invariants.md). That page separates knowledge identity from representation and run identity, requires semantic indexes to remain rebuildable derivatives, and assigns proof obligations to the repositories that actually own the relevant runtime. It was extracted from the useful predecessor lessons in `textflow-core` without making that repository—or a new meta-layer—current authority.
+
 ## Operating regime after W4
 
 The ecosystem is sufficiently legible and composable that further architecture work should be pulled by real use or detected drift.
