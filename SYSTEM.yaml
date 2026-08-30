@@ -16,6 +16,7 @@ authority:
     - repository registry and maturity classification
     - documented producer-consumer relationships
     - ecosystem migration and integration roadmap
+    - durable cross-cutting knowledge-processing invariants and proof obligations
     - declared downstream frontier from knowledge to synthesis and publication
   does_not_own:
     - shared machine-readable knowledge contracts
@@ -34,6 +35,7 @@ interfaces:
     - ecosystem registry
     - authority model
     - lifecycle and flow documentation
+    - durable knowledge-processing invariant definitions and repository-local proof obligations
     - governed integration waves
 upstream:
   - repo.kb-contracts
