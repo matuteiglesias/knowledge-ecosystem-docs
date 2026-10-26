@@ -22,7 +22,7 @@ This is the current registry for the knowledge-management estate. Canonical rows
 
 | Repository | Evidence-backed boundary | Lifecycle / state | Reconciliation | Interface-proof state |
 | --- | --- | --- | --- | --- |
-| `kb-artifacts` | deterministic inspection/filtering/selection and reproducible JSONL/CSV/Markdown evidence export with provenance | active · selection/export capability | W2 boundary reconciled; Textflow W5 confirms it satisfies deterministic export | `knowledge-inspect ↛ kb-artifacts` is an accepted corrected non-edge; no mandatory direct handoff exists |
+| `kb-artifacts` | deterministic inspection/filtering/selection and reproducible JSONL/CSV/Markdown evidence export with provenance | active · selection/export capability | W2 boundary reconciled; Textflow W5 confirms it satisfies deterministic export | W3 rejected a mandatory Knowledge Inspect handoff; October M7 proves an optional `producer-local:knowledge-inspect.evidence-jsonl@1` interface consumed through the generic KB Artifacts reader ([PR #13](https://github.com/matuteiglesias/kb-artifacts/pull/13)) |
 | `knowledge-inspect` | bounded semantic/analytical inspection, representation derivative state, run evidence and analysis outputs over approved governed inputs | active · inspection producer | W2 boundary reconciled; Textflow W3/W4 hardened semantic-runtime and ingestion ownership | `paper-kb → knowledge-inspect` accepted; W4 canonical governed-input seam accepted; no direct mandatory KB Artifacts edge |
 | `paper-kb` | paper acquisition/parsing, governed paper corpus/chunks, producer-owned review records and corpus/API operator surface | active · paper-corpus producer | W2 boundary reconciled | `paper-kb → knowledge-inspect` accepted; `paper-kb → abstract-scroller` accepted; Paper KB records also feed proven Knowledge Experiences |
 | `context-routing` | safe published discovery projection and logical resource catalog over selected governed context sources | active · routing projection | W2 boundary reconciled | `context-routing → matias-context-mcp` accepted executable proof; upstream publication choices remain producer-owned |
@@ -71,7 +71,8 @@ This is the current registry for the knowledge-management estate. Canonical rows
 
 kb-artifacts
   deterministic exploration / selection / export
-  (orthogonal capability; no mandatory knowledge-inspect edge)
+  (orthogonal capability; optional M7 evidence-jsonl proof,
+   not a mandatory knowledge-inspect edge)
 ```
 
 Marked accepted edges have executable consumer-side evidence recorded in [W3 Interface Proofs](./w3-interface-proofs.md) or the relevant repository's current proof surface. Unmarked relationships are responsibility or composition relationships and must not be read as end-to-end compatibility claims.
@@ -81,16 +82,16 @@ Marked accepted edges have executable consumer-side evidence recorded in [W3 Int
 ```text
 repo.knowledge-ecosystem-docs
 repo.kb-contracts
-repo.paper-kb
+repo.knowledge-base-app     # current GitHub name: paper-kb
 repo.knowledge-inspect
-repo.kb-artifacts
+repo.gpt-digests          # current GitHub name: kb-artifacts
 repo.knowledge-experiences
-repo.context-routing
+repo.context              # current GitHub name: context-routing
 repo.matias-context-mcp
 repo.abstract-scroller
 ```
 
-Historical aliases such as `repo.context`, `repo.gpt-digests`, or `repo.knowledge-base-app` remain migration evidence only.
+These are **stable estate repository IDs**, not slugs regenerated from GitHub names. The historical GitHub names `context`, `gpt-digests` and `knowledge-base-app` are name aliases; the corresponding `repo.context`, `repo.gpt-digests` and `repo.knowledge-base-app` IDs remain canonical under the [October estate identity registry](https://github.com/matuteiglesias/projects/blob/main/estate/repository-identities.yaml). The `projects` estate registry owns repository identity; this documentation registry owns knowledge-architecture responsibility and proof state.
 
 ## Observed estate not yet promoted
 

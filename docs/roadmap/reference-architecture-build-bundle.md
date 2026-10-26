@@ -57,19 +57,19 @@ Remaining W3 frontier is intentionally narrow: prove governed outputs → `conte
 
 ## Wave 4 — Operability and sensing
 
-**Status:** first bounded tranche implemented on 2026-08-29. See [W4 Operability and Sensing](../operations/w4-operability-and-sensing.md).
+**Status:** first bounded tranche implemented on 2026-08-29; the redundant scheduled identity probe was retired on 2026-10-26. See [W4 Operability and Sensing](../operations/w4-operability-and-sensing.md).
 
-Delivered:
+Historical implementation:
 
-- checked-in manifest of six public active `SYSTEM.yaml` surfaces;
-- dependency-free Python drift sensor for stable repository identity/lifecycle markers;
-- weekly GitHub Actions schedule plus manual dispatch;
-- private `context-routing` explicitly remains a manual surface rather than broadening credentials;
-- first semantic reconciliation pass found and repaired high-value boundary drift in `kb-contracts` and `knowledge-inspect` metadata.
+- a checked-in six-repository public `SYSTEM.yaml` manifest, Python string-marker checker, and weekly Actions schedule;
+- no private `context-routing` credential escalation;
+- useful semantic reconciliation of `kb-contracts` and `knowledge-inspect` boundaries.
+
+October audit found the original checker was misclassifying stable rename-preserved IDs (`repo.gpt-digests` / `repo.knowledge-base-app`) as drift. The `projects` estate registry now owns stable identity and repository sensing; leaving a six-repo, duplicate, false-positive scheduled check here would reduce clarity. The old workflow, script and manifest were therefore removed, **without changing producer IDs**. This does not assert that an authenticated estate sensing run is currently scheduled or fresh.
 
 The sensor is deliberately not a central orchestrator. It makes disappearance or identity drift visible cheaply; semantic boundary changes still require evidence-aware review.
 
-**W4 bounded DoD:** important public boundary deterioration can become visible without manually opening every repository and without cross-repository write credentials.
+**W4 historical DoD (August):** cheap public-surface checks demonstrated visibility without cross-repository write credentials. **Current operating contract (October):** estate identity/freshness checks belong to `projects`; this repository remains the review-driven authority for knowledge topology and proof states. No duplicate watcher is maintained here.
 
 ## Wave 5 — Downstream consumer handoff
 
