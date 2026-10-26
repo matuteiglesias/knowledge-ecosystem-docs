@@ -30,6 +30,10 @@ Its contract authority does not make it an orchestration engine or universal kno
 - which shared contract governs a cross-repository edge;
 - which capability is intentionally unassigned.
 
+## Repository identity versus architecture authority
+
+Stable `repo_id` identity and rename history belong to the [`projects` GitHub estate registry](https://github.com/matuteiglesias/projects/blob/main/estate/repository-identities.yaml). The `repository.id` field in a producer's `SYSTEM.yaml` may legitimately retain an old name-derived ID after a GitHub rename. Do not rewrite stable IDs to match a current repository slug. This repository instead governs the *knowledge-ecosystem* responsibility, interface and evidence interpretation. The Control Tower separately owns operational `front_id` relationships.
+
 ## Relationship states
 
 Every cross-repository relationship should eventually be classified as one of:

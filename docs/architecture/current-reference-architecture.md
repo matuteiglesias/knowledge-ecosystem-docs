@@ -69,7 +69,7 @@ A further class remains deliberately **unassigned**: semantic synthesis, claim/e
 - `context-routing → matias-context-mcp`: accepted executable proof; publication policy stays producer-owned while MCP owns bounded exposure/read transport.
 - `paper-kb → knowledge-inspect`: accepted producer-writer → real consumer-validator proof.
 - `paper-kb → abstract-scroller`: accepted review projection; `paper.review-record@1` is producer-owned by Paper KB and `paper_uid` survives snapshot compilation.
-- `knowledge-inspect ↛ kb-artifacts`: corrected non-edge. Their current real interfaces do not form a mandatory direct handoff.
+- `knowledge-inspect → kb-artifacts`: W3 correctly rejected an *inferred mandatory* edge. October M7 separately proved a **bounded optional** handoff: Knowledge Inspect produces `producer-local:knowledge-inspect.evidence-jsonl@1`, consumed through KB Artifacts' existing generic JSONL reader and named-corpus profile ([KB Artifacts PR #13](https://github.com/matuteiglesias/kb-artifacts/pull/13)). This does not create a mandatory pipeline or transfer producer semantics.
 - producer surfaces → `knowledge-experiences`: multiple real-source composition seams are proven in the Knowledge Experiences estate, including Paper KB and other governed producer inputs; these do not imply a Knowledge Inspect intermediary.
 
 See [W3 Interface Proofs](./w3-interface-proofs.md) for the core producer-consumer evidence ledger and [Textflow Migration Lineage](./textflow-migration-lineage.md) for the predecessor-to-current responsibility map.
@@ -130,7 +130,7 @@ The durable rule is that declared configuration must match executed behavior, ex
 5. **A missing edge may be the correct result.** Do not create adapters merely to make responsibility graphs symmetric.
 6. **Historical capability is evidence, not automatic current authority.** Legacy pages and repositories may remain useful without governing current behavior.
 7. **Future capability stays future.** Synthesis/publication remains unassigned until repeated use creates a real consumer boundary.
-8. **Important edges should be observable.** Cheap drift sensing is preferable to central orchestration.
+8. **Important edges should be observable.** Prefer evidence-backed producer/consumer tests and the existing estate sensing owner over duplicating repository identity checks in every architecture repo.
 9. **Composition is not synthesis.** Reproducibly assembling governed knowledge into an experience does not grant authority over evidence truth or editorial claims.
 10. **Execution semantics remain domain-owned until reuse is proven.** A generic workflow/runtime contract should be extracted only after independent active consumers converge on the same boundary; predecessor code alone is not evidence of that need.
 
